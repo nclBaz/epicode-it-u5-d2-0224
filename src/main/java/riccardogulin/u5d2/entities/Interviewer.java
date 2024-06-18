@@ -1,6 +1,7 @@
 package riccardogulin.u5d2.entities;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +20,7 @@ public class Interviewer {
 
 	// CONSTRUCTOR INJECTION
 	@Autowired // Qua è OPZIONALE l'annotazione Autowired, se non la metto Spring comunque inietta le dipendenze
-	public Interviewer(IStudent student, String name, String surname) { // <-- ACCOPPIAMENTO DEBOLE, LO VOGLIAMO!
+	public Interviewer(@Qualifier("getFullstackStudent") IStudent student, @Qualifier("getName") String name, @Qualifier("getSurname") String surname) { // <-- ACCOPPIAMENTO DEBOLE, LO VOGLIAMO!
 		this.student = student;
 		this.name = name;
 		this.surname = surname;
