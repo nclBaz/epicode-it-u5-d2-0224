@@ -2,7 +2,9 @@ package riccardogulin.u5d2;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
-import riccardogulin.u5d2.entities.*;
+import riccardogulin.u5d2.entities.BackendStudent;
+import riccardogulin.u5d2.entities.FrontendStudent;
+import riccardogulin.u5d2.entities.FullstackStudent;
 
 @Configuration // Annotazione OBBLIGATORIA, altrimenti questa classe non verrà presa in considerazione
 @PropertySource("application.properties")
@@ -26,6 +28,12 @@ public class BeansConfig {
 	}
 
 	@Bean
+	@Primary
+	public String getSurname() {
+		return "Brazorf";
+	}
+
+	@Bean
 	public FrontendStudent getFrontendStudent(@Value("${admin.name}") String name) {
 		return new FrontendStudent(name);
 	}
@@ -46,8 +54,8 @@ public class BeansConfig {
 		return new FullstackStudent("Giacomo");
 	}
 
-	@Bean(name = "interviewer") // Posso anche assegnare un nome ai miei Bean, se non lo faccio verrà usato il nome del metodo
+/*	@Bean(name = "interviewer") // Posso anche assegnare un nome ai miei Bean, se non lo faccio verrà usato il nome del metodo
 	public Interviewer getInterviewer(IStudent student) {
 		return new Interviewer(student);
-	}
+	}*/
 }
